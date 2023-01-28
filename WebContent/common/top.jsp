@@ -65,16 +65,19 @@ a{
 				</ul>
 		<ul class="nav navbar-nav navbar-right">
 	        <li class="dropdown">
+	        <!-- 비회원 가능 -->
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PRODUCT <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-				<li><a onclick="javascript:fn_isLogin('${sessionScope.userCode}','${loginUrl}','${penUrl}')" style="color: black; font-size: 15px;">PERFUMS</a></li>
-			    <li><a onclick="javascript:fn_isLogin('${sessionScope.userCode}','${loginUrl}','${officeUrl}')" style="color: black; font-size: 15px;">DIFFUSER</a></li>
+				<li><a onclick="javascript:fn_isLogin('${penUrl}')" style="color: black; font-size: 15px;">PERFUMS</a></li>
+			    <li><a onclick="javascript:fn_isLogin('${officeUrl}')" style="color: black; font-size: 15px;">DIFFUSER</a></li>
 
 	          </ul>
 	        </li>
+	        <!-- 비회원 가능 -->
 	        <li><a class="ddt" href="#">RESERVATION</a></li>
 	        
 	        <li class="dropdown">
+	        <!-- 회원, 관리자만 가능 -->
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SERVICE <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
 				<li><a onclick="javascript:fn_isLogin('${sessionScope.userCode}','${loginUrl}','${penUrl}')" style="color: black; font-size: 15px;">NOTICE</a></li>
@@ -84,11 +87,13 @@ a{
 	          </ul>
 	        </li>
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY PAGE <span class="caret"></span></a>
-	          <ul class="dropdown-menu">
-			    <li><a onclick="javascript:fn_isLogin('${sessionScope.userCode}','${loginUrl}','${officeUrl}')" style="color: black; font-size: 15px;">PURCHASE HISTORY</a></li>
-			    <li><a onclick="javascript:fn_isLogin('${sessionScope.userCode}','${loginUrl}','${storageUrl}')" style="color: black; font-size: 15px;">EDIT PROFILE</a></li>
-	          </ul>
+				<c:if test="${sessionScope.id != null && sessionScope.grade != 'A'}">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY PAGE <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+				    <li><a onclick="javascript:fn_isLogin('${sessionScope.userCode}','${loginUrl}','${officeUrl}')" style="color: black; font-size: 15px;">PURCHASE HISTORY</a></li>
+				    <li><a onclick="javascript:fn_isLogin('${sessionScope.userCode}','${loginUrl}','${storageUrl}')" style="color: black; font-size: 15px;">EDIT PROFILE</a></li>
+		          </ul>
+				</c:if>
 	        </li>
       			<li>
 					<c:if test="${sessionScope.id != null && sessionScope.grade != 'A'}">
